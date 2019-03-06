@@ -1,0 +1,55 @@
+\documentclass[aspectratio=169,11pt,hyperref={colorlinks=true}]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{listingsutf8}
+\usepackage{listings-golang}
+\usepackage{tikz}
+\usepackage{color}
+
+
+\title{Developing a CD pipeline with Knative}
+\date[DevOps Meetup]{March 14th 2019, Singapore, Singapore}
+\author[Andrea]{
+  Andrea Frittoli \\
+  Developer Advocate \\
+  andrea.frittoli@uk.ibm.com \\
+  @blackchip76
+}
+
+\usetheme{ibmcloud}
+
+% Code style
+\setlststyle
+
+\lstdefinelanguage{koyaml}{
+  keywords={github, com, afrittoli, examples, ms, go, helloworld},
+  sensitive=false,
+  comment=[l]{\#},
+  morestring=[b]',
+  morestring=[b]"
+}
+
+% Automatic section frame
+\AtBeginSection{\frame{\sectionpage}}
+
+\begin{document}
+
+\begin{frame}[noframenumbering]
+\titlepage{}
+\end{frame}
+
+\section{A Bit of History}
+
+\section{Tekton Pipelines}
+
+\section{Source to Image}
+
+\section{Tekton and Knative}
+
+\section{Conclusions}
+
+\section{Q\&A}
+
+\end{document}
