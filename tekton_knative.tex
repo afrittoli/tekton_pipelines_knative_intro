@@ -42,8 +42,32 @@
 
 \section{A Bit of History}
 
-\begin{grayframe}
+% The main points of the talk are:
+% - give an introduction to Tekton Pipelines
+% - get in some more details with an example
+% - talk about Kaniko and source to image with tricky bits
+% - reusing tasks, dev vs CI vs CD
+% - point of integration with serving and eventing
+% - can I use Tekton? Where? security concerns
+
+\begin{lblackrwhiteframe}
   \frametitle{Knative}
+  \large
+  \begin{beamercolorbox}[wd=0.3\paperwidth]{text}
+    \begin{itemize}
+      \item Beginning of 2018...
+      \item Knative:
+      \begin{itemize}
+        \item Build
+        \item Eventing
+        \item Serving
+      \end{itemize}
+    \end{itemize}
+  \end{beamercolorbox}%
+  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.2\paperheight)
+    \centering
+    \includegraphics[width=0.45\paperwidth]{img/knative-audience.png}
+  \end{textblock*}
 \end{grayframe}
 
 \begin{grayframe}
@@ -120,6 +144,7 @@
   % Base images cache
   % Output image
   % Optimize the docker image
+  % Reproducible builds
 \end{grayframe}
 
 \begin{grayframe}
@@ -134,7 +159,40 @@
 
 \section{Tekton and Knative}
 
+\begin{grayframe}
+  \frametitle{Kservices and Build}
+\end{grayframe}
+
+\begin{grayframe}
+  \frametitle{Duck Typing and Tekton}
+  % Using tasks and pipelines in Kservices
+  % Build vs CI
+\end{grayframe}
+
+\begin{grayframe}
+  \frametitle{Tekton and CI}
+  % GitOps Style
+  % Challenges
+  % Existing integrations
+\end{grayframe}
+
+\begin{grayframe}
+  \frametitle{Triggering with Eventing}
+  % Using tasks and pipelines in Kservices
+  % Build vs CI
+  % Native triggers: TBD
+  % Async pipelines
+\end{grayframe}
+
 \section{Conclusions}
+
+\begin{grayframe}
+  \frametitle{Roadmap}
+\end{grayframe}
+
+\begin{grayframe}
+  \frametitle{References}
+\end{grayframe}
 
 \section{Q\&A}
 
