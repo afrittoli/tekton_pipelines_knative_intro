@@ -17,6 +17,9 @@
   andrea.frittoli@uk.ibm.com \\
   @blackchip76
 }
+\institute[DevOpsMeetupSingapore]{
+  DevOps Meetup Singapore
+}
 
 \usetheme{ibmcloud}
 
@@ -40,8 +43,6 @@
 \titlepage{}
 \end{frame}
 
-\section{A Bit of History}
-
 % The main points of the talk are:
 % - give an introduction to Tekton Pipelines
 % - get in some more details with an example
@@ -49,6 +50,10 @@
 % - reusing tasks, dev vs CI vs CD
 % - point of integration with serving and eventing
 % - can I use Tekton? Where? security concerns
+
+% The slide/section order does not match the narrative yet
+
+\section{A Bit of History}
 
 \begin{lblackrwhiteframe}
   \frametitle{Knative}
@@ -63,6 +68,16 @@
         \item Serving
       \end{itemize}
     \end{itemize}
+    \begin{itemize}
+      \item Contributors:
+      \begin{itemize}
+        \item Google
+        \item Pivotal
+        \item IBM
+        \item RedHat
+        \item ...and others
+      \end{itemize}
+    \end{itemize}
   \end{beamercolorbox}%
   \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.2\paperheight)
     \centering
@@ -71,7 +86,7 @@
 \end{grayframe}
 
 \begin{blackframe}
-  \frametitle{Knative Pipelines}
+  \frametitle{\textasciitilde Sept 2018: Knative Pipelines}
   \begin{textblock*}{\paperwidth}(0cm,0.2\paperheight)
     \includegraphics[width=\paperwidth]{img/pipeline_cc0.jpg}
     % https://mediad.publicbroadcasting.net/p/shared/npr/styles/placed_wide/nprshared/201804/605180710.jpg
@@ -82,9 +97,30 @@
   \end{textblock*}
 \end{blackframe}
 
-\begin{grayframe}
-  \frametitle{Tekton Pipelines}
-\end{grayframe}
+\begin{lblackrwhiteframe}
+  \frametitle{\textasciitilde Feb 2019: Tekton Pipelines}
+  \large
+  \begin{beamercolorbox}[wd=0.3\paperwidth]{text}
+    \begin{itemize}
+      \item Focus on CI/CD
+      \item Deploy ``anywhere``
+      \item Compatible with Knative Build
+    \end{itemize}
+    \begin{itemize}
+      \item {\em tektoncd/pipeline}
+      \begin{itemize}
+        \item Logo TBD
+        \item Governance WIP
+        \item Alpha APIs
+        \item Roadmap WIP
+      \end{itemize}
+    \end{itemize}
+  \end{beamercolorbox}%
+  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.35\paperheight)
+    \centering
+    \includegraphics[width=0.35\paperwidth]{img/tekton_not_knative.png}
+  \end{textblock*}
+\end{lblackrwhiteframe}
 
 \begin{grayframe}
   \frametitle{Community}
@@ -153,11 +189,13 @@
   % Output image
   % Optimize the docker image
   % Reproducible builds
+  % Alternatives for build
 \end{grayframe}
 
 \begin{grayframe}
   \frametitle{Cluster resource and secrets}
   % Environment vs run specific stuff
+  % security considerations
 \end{grayframe}
 
 \begin{grayframe}
@@ -192,6 +230,15 @@
   % Async pipelines
 \end{grayframe}
 
+\begin{grayframe}
+  \frametitle{Tekton and Development}
+  % Maybe
+  % Local development with minikube
+  % Skaffold, ko, gulp
+  % Pros and cons
+  % This slide breaks the narrative here
+\end{grayframe}
+
 \section{Conclusions}
 
 \begin{grayframe}
@@ -200,6 +247,9 @@
 
 \begin{grayframe}
   \frametitle{References}
+  % https://github.com/tektoncd/pipeline
+  % https://github.com/tektoncd/pipeline/blob/master/api_compatibility_policy.md
+  % https://github.com/tektoncd/pipeline/blob/master/roadmap-2019.md
 \end{grayframe}
 
 \section{Q\&A}
