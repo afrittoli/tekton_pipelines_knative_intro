@@ -124,62 +124,80 @@
 
 \begin{grayframe}
   \frametitle{Community}
+  \begin{itemize}
+    \item {\em Valid for Knative. Tekton TBD.}
+    \item Steering Commitee (SC)
+    \item Technical Oversight Commitee (TOC)
+    \item Various Contribution profiles
+    \item Design, issues: on GitHub
+    \item Communication:
+    \begin{itemize}
+      \item Weekly video meetings, recorded, Build WG
+      \item Asynch: Knative Users / Developers ML
+      \item Sync: slack.knative.dev
+    \end{itemize}
+  \end{itemize}
 \end{grayframe}
 
 \section{Tekton Pipelines}
 
 \begin{grayframe}
   \frametitle{Intro}
+  % Cloud Native Pipelines, runs on Kubernetes
+  % Diagram with step, task, pipeline, input, output, params
+  % -> Use colour to identify runtime elements
+  % -> Use colour to identify CRDs
 \end{grayframe}
 
 \begin{grayframe}
-  \frametitle{CRDs, Reconcile}
+  \frametitle{The Health Application}
+  % architecture graph
+  % screenshot
 \end{grayframe}
 
 \begin{grayframe}
-  \frametitle{Steps, Tasks, Pipelines, Params}
+  \frametitle{Inputs, Outputs \& DAG}
+  % Graph of a simple health pipeline
+\end{grayframe}
+
+\section{Under the Hood}
+
+\begin{grayframe}
+  \frametitle{Custom Resources}
+  % Webhook validation
+  % Controller reconciles resources -> runs tasks and pipelines
+  % Defined as YAML
+  % -> From file
+  % -> From an app, using go API
 \end{grayframe}
 
 \begin{grayframe}
-  \frametitle{*Runs, PipelineResources}
-\end{grayframe}
-
-\begin{grayframe}
-  \frametitle{Inputs \& Outputs}
-\end{grayframe}
-
-\begin{grayframe}
-  \frametitle{DAG and ordering}
-\end{grayframe}
-
-\begin{grayframe}
-  \frametitle{Entrypoint}
-  % Entrypoint tools
-  % Custom images in Steps
-  % PVC vs Object storage
+  \frametitle{Pods, Entrypoints \& Volumes}
+  % Task -> Pod (one node)
+  % Step -> Container (custom images)
+  % Entrypoint to order containers, rewrite entrypoint
+  % One pod, scheduled once, same node
+  % Empty dir can be shared
+  % Pipeline -> Multiple Pods. PVC vs Object storage
+  % maybe another diagram
 \end{grayframe}
 
 \section{Source to Image to Deploy}
 
 \begin{grayframe}
-  \frametitle{The Health Application}
-  % components
-  % repos
-\end{grayframe}
-
-\begin{grayframe}
   \frametitle{IBM Cloud}
-  % service accounts
-  % the add-on
+  % Private registry
+  % Service accounts
+  % Experimental add-on, install knative
 \end{grayframe}
 
 \begin{grayframe}
-  \frametitle{CD Pipeline}
-\end{grayframe}
-
-\begin{grayframe}
-  \frametitle{Parameters}
-  % Environment vs run specific stuff
+  \frametitle{CD Pipeline as code}
+  % Everything is defined via YAML
+  % Declarative: pipeline as code, reconciled
+  % Git PipelineResource
+  % Resources and parameters
+  % -> Environment, run specific, secrets
 \end{grayframe}
 
 \begin{grayframe}
@@ -190,44 +208,62 @@
   % Optimize the docker image
   % Reproducible builds
   % Alternatives for build
+  % Image Pipeline Resource
+  % Kaniko Logo
 \end{grayframe}
 
 \begin{grayframe}
   \frametitle{Cluster resource and secrets}
-  % Environment vs run specific stuff
-  % security considerations
-\end{grayframe}
-
-\begin{grayframe}
-  \frametitle{Service account and namespace}
-  % Image Pull and Push
+  % Deploy to cluster
+  % -> cluster resource
+  % Security considerations
+  % Targeting a namespace
+  % Using service accounts
 \end{grayframe}
 
 \section{Tekton and Knative}
 
 \begin{grayframe}
-  \frametitle{Kservices and Build}
+  \frametitle{Pipelines and Knative Build}
+  % *Run can be used as build with serving via duck typing
+  % Build probably won't be developed much further
+  % ...but you never know
+  % Do something more complex with pipelines
 \end{grayframe}
 
 \begin{grayframe}
-  \frametitle{Duck Typing and Tekton}
-  % Using tasks and pipelines in Kservices
-  % Build vs CI
+  \frametitle{CI for OpenStack Health}
+  % There's already CI, with Zuul, check it out
+  % Pipeline as code... again
+  % GitOps Style (check gitops)
+  % Diagram of CI pipeline for OH
+  % Reusing tasks, best practices
 \end{grayframe}
 
 \begin{grayframe}
-  \frametitle{Tekton and CI}
-  % GitOps Style
-  % Challenges
+  \frametitle{CI with Tekton Pipelines}
+  % It's not a CI engine...
+  % ...but it works well with one
+  % Dogfooding
+  % What about secrets?
   % Existing integrations
+  % - jenkinsX, prow
+  % - gitlab? pivotal? to be checked
+  % - higher level abstractions
 \end{grayframe}
 
+\section{Asynchronous Pipelines}
+
 \begin{grayframe}
-  \frametitle{Triggering with Eventing}
+  \frametitle{Triggering and Knative Eventing}
+  % Manual trigger
   % Using tasks and pipelines in Kservices
-  % Build vs CI
   % Native triggers: TBD
   % Async pipelines
+  % GitHub events
+  % -> push/pull request (CI)
+  % -> comment (CI / CD)
+  % -> release (CD)
 \end{grayframe}
 
 \begin{grayframe}
@@ -242,6 +278,16 @@
 \section{Conclusions}
 
 \begin{grayframe}
+  \frametitle{Shall I use Tekton Pipelines?}
+  % -Alpha APIs
+  % +Cloud Native
+  % +Relatively small footprint
+  % +Momentum
+  % +Reusable bits, library of Tasks
+  % ...so it depends
+\end{grayframe}
+
+\begin{grayframe}
   \frametitle{Roadmap}
 \end{grayframe}
 
@@ -250,6 +296,9 @@
   % https://github.com/tektoncd/pipeline
   % https://github.com/tektoncd/pipeline/blob/master/api_compatibility_policy.md
   % https://github.com/tektoncd/pipeline/blob/master/roadmap-2019.md
+  % https://github.com/knative/docs/tree/master/community
+  % links to blog posts
+  % Link to kaniko
 \end{grayframe}
 
 \section{Q\&A}
