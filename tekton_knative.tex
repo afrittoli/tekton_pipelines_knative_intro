@@ -194,11 +194,24 @@
 
 \begin{grayframe}
   \frametitle{Custom Resources}
-  % Webhook validation
-  % Controller reconciles resources -> runs tasks and pipelines
-  % Defined as YAML
-  % -> From file
-  % -> From an app, using go API
+  CRDs: Task(Run), Pipeline(Run), PipelineResource \\
+  \vspace{3ex}
+  Services in the {\em tekton-pipelines} namespace:
+  \begin{itemize}
+    \item Webhook Service: resource validation
+    \item Controller Service:
+    \begin{itemize}
+      \item Handles inputs and outputs
+      \item Calculates the DAG
+      \item Provisions pods and containers
+    \end{itemize}
+  \end{itemize}
+  \vspace{3ex}
+  Custom Resource Provisioning:
+  \begin{itemize}
+    \item Via YAML
+    \item Via Go API
+  \end{itemize}
 \end{grayframe}
 
 \begin{grayframe}
