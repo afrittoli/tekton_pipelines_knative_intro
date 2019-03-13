@@ -280,18 +280,35 @@
   \frametitle{CD Pipeline as code}
 \end{2columnsframe}
 
-\begin{grayframe}
+\begin{lblackrwhiteframe}
   \frametitle{Using Kaniko}
-  % Caching layers
-  % Base images cache
-  % Output image
-  % Optimize the docker image
-  % Reproducible builds
-  % Alternatives for build
-  % Image Pipeline Resource
-  % Kaniko Logo
-  % Kaniko Warmer
-\end{grayframe}
+  \large
+  \begin{beamercolorbox}[wd=0.45\paperwidth]{text}
+    \begin{itemize}
+      \item Features:
+      \begin{itemize}
+        \item Build from Context and Dockerfile
+        \item Unpriviledged
+        \item Reproducible
+        \item Remote caching of layers
+        \item Base images caching (warmer)
+      \end{itemize}
+    \end{itemize}
+    \vspace{3ex}
+    \begin{itemize}
+      \item Dockefile?
+      \begin{itemize}
+        \item Most common changes last
+        \item Careful with COPY/ADD
+        \item Remove what you don't need
+      \end{itemize}
+    \end{itemize}
+  \end{beamercolorbox}%
+  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.25\paperheight)
+    \centering
+    \includegraphics[width=0.35\paperwidth]{img/Kaniko-Logo.png}
+  \end{textblock*}
+\end{lblackrwhiteframe}
 
 \section{Tekton and Knative}
 
