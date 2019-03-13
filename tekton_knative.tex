@@ -167,10 +167,28 @@
   \end{textblock*}
 \end{grayframe}
 
-\begin{grayframe}
+\begin{2columnsframe}
+  {
+    \begin{itemize}
+      \item Steps are sequential
+      \item Tasks are a Directed Acyclic Graph
+    \end{itemize}
+    \vspace{10pt}
+    \begin{itemize}
+      \item Order defined by:
+      \begin{itemize}
+        \item {\em from}: input from another task's output
+        \item {\em runAfter}: enforced task ordering
+      \end{itemize}
+    \end{itemize}
+    % Add another pipeline example
+  }
+  {
+    \includegraphics[width=0.4\paperwidth]{img/pipeline.png}
+  }
   \frametitle{Inputs, Outputs \& DAG}
   % Graph of a simple health pipeline
-\end{grayframe}
+\end{2columnsframe}
 
 \section{Under the Hood}
 
