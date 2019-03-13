@@ -214,7 +214,41 @@
   \end{itemize}
 \end{grayframe}
 
-\begin{grayframe}
+\begin{2columnsframe}
+  {
+  Steps (of a Task):
+  \begin{itemize}
+    \item Containers in one POD (single node)
+    \item Any container image
+    \item Entrypoint re-written
+    \item Serial execution
+    \item Resource allocation?
+  \end{itemize}
+  \vspace{3ex}
+  TaskRun:
+  \begin{itemize}
+    \item Provisions a POD
+    \item Deployes entrypoint tool
+    \item Input/output containers
+    \item User containers (steps)
+  \end{itemize}
+  }
+  {
+  Volumes:
+  \begin{itemize}
+    \item EmptyDir for workspace/home
+    \item Tools (entrypoint)
+    \item Secrets
+    \item Any user ConfigMap / Volume
+    \item (Optionally) Pipeline Share
+  \end{itemize}
+  \vspace{3ex}
+  PipelineRun:
+  \begin{itemize}
+    \item Several PODs, different nodes
+    \item Shared storage: PVC or GCS
+  \end{itemize}
+  }
   \frametitle{Pods, Entrypoints \& Volumes}
   % Task -> Pod (one node)
   % Step -> Container (custom images)
@@ -223,7 +257,7 @@
   % Empty dir can be shared
   % Pipeline -> Multiple Pods. PVC vs Object storage
   % maybe another diagram
-\end{grayframe}
+\end{2columnsframe}
 
 \section{Source to Image to Deploy}
 
@@ -253,6 +287,7 @@
   % Alternatives for build
   % Image Pipeline Resource
   % Kaniko Logo
+  % Kaniko Warmer
 \end{grayframe}
 
 \begin{grayframe}
