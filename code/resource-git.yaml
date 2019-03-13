@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: health-helm-git-knative
+  labels:
+    tag: agreatrelease
+spec:
+  type: git
+  params:
+    - name: revision
+      value: knative
+    - name: url
+      value: https://github.com/afrittoli/health-helm

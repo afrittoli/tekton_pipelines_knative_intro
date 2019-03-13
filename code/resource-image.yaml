@@ -1,0 +1,7 @@
+metadata:
+  name: health-api-image
+spec:
+  type: image
+  params:
+    - name: url
+      value: registry.ng.bluemix.net/andreaf/health-api

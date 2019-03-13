@@ -1,0 +1,18 @@
+metadata:
+  name: mycluster
+spec:
+  type: cluster
+  params:
+    - name: name
+      value: mycluster
+    - name: url
+      value: https://mycluster.containers.cloud.ibm.com
+    - name: username
+      value: admin
+  secrets:
+    - fieldName: token
+      secretKey: tokenKey
+      secretName: cluster-secrets
+    - fieldName: cadata
+      secretKey: cadataKey
+      secretName: cluster-secrets

@@ -211,6 +211,7 @@
   \begin{itemize}
     \item Via YAML
     \item Via Go API
+    \item Labels!
   \end{itemize}
 \end{grayframe}
 
@@ -250,13 +251,6 @@
   \end{itemize}
   }
   \frametitle{Pods, Entrypoints \& Volumes}
-  % Task -> Pod (one node)
-  % Step -> Container (custom images)
-  % Entrypoint to order containers, rewrite entrypoint
-  % One pod, scheduled once, same node
-  % Empty dir can be shared
-  % Pipeline -> Multiple Pods. PVC vs Object storage
-  % maybe another diagram
 \end{2columnsframe}
 
 \section{Source to Image to Deploy}
@@ -268,14 +262,23 @@
   % Experimental add-on, install knative
 \end{grayframe}
 
-\begin{grayframe}
+\begin{2columnsframe}
+  {
+  \begin{itemize}
+    \item Pipeline and Tasks in git (YAML)
+    \item Parameters for env/run specific
+    \item Security?
+  \end{itemize}
+  \vspace{3ex}
+  \lstinputlisting[language=koyaml]{code/resource-git.yaml}
+  }
+  {
+  \lstinputlisting[language=koyaml]{code/resource-cluster.yaml}
+  \vspace{1ex}
+  \lstinputlisting[language=koyaml]{code/resource-image.yaml}
+  }
   \frametitle{CD Pipeline as code}
-  % Everything is defined via YAML
-  % Declarative: pipeline as code, reconciled
-  % Git PipelineResource
-  % Resources and parameters
-  % -> Environment, run specific, secrets
-\end{grayframe}
+\end{2columnsframe}
 
 \begin{grayframe}
   \frametitle{Using Kaniko}
@@ -288,15 +291,6 @@
   % Image Pipeline Resource
   % Kaniko Logo
   % Kaniko Warmer
-\end{grayframe}
-
-\begin{grayframe}
-  \frametitle{Cluster resource and secrets}
-  % Deploy to cluster
-  % -> cluster resource
-  % Security considerations
-  % Targeting a namespace
-  % Using service accounts
 \end{grayframe}
 
 \section{Tekton and Knative}
