@@ -381,16 +381,21 @@
   % - higher level abstractions
   \large
   \begin{beamercolorbox}[wd=0.45\paperwidth]{text}
-    Not a CI System: \\
+    You need a ``CI`` application: \\
     \begin{itemize}
-      \item Prow, JenkinsX, Zuul..
-      \item Pipelines triggered by a CI system...
+      \item Prow, JenkinsX, Zuul...
+      \item Pipelines triggered by a CI app
       \item ...or by a developer
     \end{itemize}
     \vspace{3ex}
-    Dogfooding \textbackslash o/ \\
+    Tekton to CI for Tekton (AKA Dogfooding) \textbackslash o/ \\
     \vspace{3ex}
-    ...secrets? \\
+    What about security?
+    \begin{itemize}
+      \item Malicious users
+      \item Running a pipeline from a PR
+      \item Access to secrets
+    \end{itemize}
   \end{beamercolorbox}%
   \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.15\paperheight)
     \centering
