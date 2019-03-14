@@ -255,12 +255,36 @@
 
 \section{Source to Image to Deploy}
 
-\begin{grayframe}
+\begin{lblackrwhiteframe}
   \frametitle{IBM Cloud}
-  % Private registry
-  % Service accounts
-  % Experimental add-on, install knative
-\end{grayframe}
+  \large
+  \begin{beamercolorbox}[wd=0.4\paperwidth]{text}
+    \begin{itemize}
+      \item Private Registry:
+      \begin{itemize}
+        \item Tekon Images (push/pull)
+        \item User Images (push/pull)
+      \end{itemize}
+      \item Service Accounts:
+      \begin{itemize}
+        \item {\em tekton-pipelines-controller}
+        \item Pipeline/Task service account
+      \end{itemize}
+    \end{itemize}
+    \vspace{3ex}
+    \begin{itemize}
+      \item Knative @ IBM Cloud
+      \begin{itemize}
+        \item Experimental Add-on
+        \item {\em ibmcloud ks cluster-addon-enable knative}
+      \end{itemize}
+    \end{itemize}
+  \end{beamercolorbox}%
+  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.3\paperheight)
+    \centering
+    \includegraphics[width=0.35\paperwidth]{img/IBM-Cloud.png}
+  \end{textblock*}
+\end{lblackrwhiteframe}
 
 \begin{2columnsframe}
   {
