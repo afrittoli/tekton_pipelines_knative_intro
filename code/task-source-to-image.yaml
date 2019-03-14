@@ -1,0 +1,41 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: source-to-image
+spec:
+  inputs:
+    resources:
+      - name: workspace
+        type: git
+    params:
+      - name: pathToDockerFile
+        default: Dockerfile
+      - name: pathToContext
+        default: .
+      - name: useImageCache
+        default: "true"
+      - name: imageTag
+        default: "default"
+  outputs:
+    resources:
+      - name: builtImage
+        type: image
+  volumes:
+    - name: kaniko-base-image-cache
+      persistentVolumeClaim:
+        claimName: kaniko-base-image-cache
+  steps:
+    - name: build-and-push
+      image: gcr.io/kaniko-project/executor
+      command:
+        - /kaniko/executor
+      args:
+        - --cache=${inputs.params.useImageCache}
+        - --cache-dir=/cache
+        - --dockerfile=${inputs.params.pathToDockerFile}
+        - --reproducible
+        - --destination=${outputs.resources.builtImage.url}:${inputs.params.imageTag}
+        - --context=/workspace/workspace/${inputs.params.pathToContext}
+      volumeMounts:
+        - name: kaniko-base-image-cache
+          mountPath: /cache

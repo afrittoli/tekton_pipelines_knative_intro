@@ -334,6 +334,18 @@
   \end{textblock*}
 \end{lblackrwhiteframe}
 
+\begin{2columnsframe}
+  {
+  {\tiny Source to Image (spec only): \\}
+  \lstinputlisting[language=koyaml,firstline=6,lastline=31]{code/task-source-to-image.yaml}
+  }
+  {
+  \lstinputlisting[language=koyaml,firstline=32,lastline=55]{code/task-source-to-image.yaml}
+  {\tiny Cache Warmer (spec only): \\}
+  \lstinputlisting[language=koyaml,firstline=21,lastline=35]{code/task-kaniko-cache.yaml}
+  }
+  \frametitle{Using Kaniko}
+\end{2columnsframe}
 \section{Tekton and Knative}
 
 \begin{grayframe}
