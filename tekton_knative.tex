@@ -423,8 +423,7 @@
   \end{textblock*}
 \end{tblackbgrayframe}
 
-\begin{grayframe}
-  \frametitle{Triggering and Knative Eventing}
+\begin{2columnsframe}
   % Manual trigger
   % Using tasks and pipelines in Kservices
   % Native triggers: TBD
@@ -433,7 +432,26 @@
   % -> push/pull request (CI)
   % -> comment (CI / CD)
   % -> release (CD)
-\end{grayframe}
+  {
+  \begin{itemize}
+    \item Manual trigger for {\em PipelineRun}
+    \item Native Eventing triggers TBD
+    \item What about async pipelines?
+    \begin{itemize}
+      \item GitHub Source
+      \item Container Source
+      \item Pipeline Output as a Source
+    \end{itemize}
+  \end{itemize}
+  }
+  {
+  \begin{textblock*}{0.6\paperwidth}(0.35\paperwidth,0.35\paperheight)
+    \centering
+    \includegraphics[width=0.6\paperwidth]{img/async_pipelines.png}
+  \end{textblock*}
+  }
+  \frametitle{Triggering and Knative Eventing}
+\end{2columnsframe}
 
 \begin{grayframe}
   \frametitle{Tekton and Development}
