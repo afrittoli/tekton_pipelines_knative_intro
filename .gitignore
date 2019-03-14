@@ -162,3 +162,6 @@ TSWLatexianTemp*
 data/git
 graphs/.jpc
 graphs/.graphs
+
+# MacOS
+**/.DS_Store

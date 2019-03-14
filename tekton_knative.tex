@@ -172,9 +172,6 @@
     \begin{itemize}
       \item Steps are sequential
       \item Tasks are a Directed Acyclic Graph
-    \end{itemize}
-    \vspace{10pt}
-    \begin{itemize}
       \item Order defined by:
       \begin{itemize}
         \item {\em from}: input from another task's output
@@ -182,6 +179,9 @@
       \end{itemize}
     \end{itemize}
     % Add another pipeline example
+    \begin{textblock*}{0.8\paperwidth}(0.15\paperwidth,0.50\paperheight)
+      \includegraphics[width=0.45\paperwidth]{img/test-pipeline.png}
+    \end{textblock*}
   }
   {
     \includegraphics[width=0.4\paperwidth]{img/pipeline.png}
@@ -354,6 +354,10 @@
   % Build probably won't be developed much further
   % ...but you never know
   % Do something more complex with pipelines
+  \begin{textblock*}{0.5\paperwidth}(0.20\paperwidth,0.30\paperheight)
+    \centering
+    \includegraphics[width=0.6\paperwidth]{img/knative+tekton.png}
+  \end{textblock*}
 \end{grayframe}
 
 \begin{grayframe}
