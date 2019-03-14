@@ -346,6 +346,7 @@
   }
   \frametitle{Using Kaniko}
 \end{2columnsframe}
+
 \section{Tekton and Knative}
 
 \begin{grayframe}
@@ -360,15 +361,7 @@
   \end{textblock*}
 \end{grayframe}
 
-\begin{grayframe}
-  \frametitle{CI for OpenStack Health}
-  % There's already CI, with Zuul, check it out
-  % Pipeline as code... again
-  % Diagram of CI pipeline for OH
-  % Reusing tasks, best practices
-\end{grayframe}
-
-\begin{grayframe}
+\begin{lblackrwhiteframe}
   \frametitle{CI with Tekton Pipelines}
   % It's not a CI engine...
   % ...but it works well with one
@@ -378,7 +371,35 @@
   % - jenkinsX, prow
   % - gitlab? pivotal? to be checked
   % - higher level abstractions
-\end{grayframe}
+  \large
+  \begin{beamercolorbox}[wd=0.45\paperwidth]{text}
+    \vspace{3ex}
+    Not a CI System: \\
+    \begin{itemize}
+      \item Prow, JenkinsX, Zuul..
+      \item Pipelines triggered by a CI system...
+      \item ...or by a developer
+    \end{itemize}
+    \vspace{3ex}
+    Dogfooding \textbackslash o/ \\
+    \vspace{3ex}
+    ...secrets? \\
+  \end{beamercolorbox}%
+  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.15\paperheight)
+    \centering
+    \includegraphics[width=0.45\paperwidth]{img/tekton_ci.png}
+  \end{textblock*}
+\end{lblackrwhiteframe}
+
+\begin{2columnsframe}
+  {
+  \lstinputlisting[language=koyaml,firstline=1,lastline=27]{code/frontend.yaml}
+  }
+  {
+  \lstinputlisting[language=koyaml,firstline=28,lastline=58]{code/frontend.yaml}
+  }
+  \frametitle{KService for Health Frontend}
+\end{2columnsframe}
 
 \section{Asynchronous Pipelines}
 
