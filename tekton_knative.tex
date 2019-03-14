@@ -455,29 +455,38 @@
 
 \begin{grayframe}
   \frametitle{Tekton and Development}
+  \begin{itemize}
+    \item It depends.
+    \item What can go wrong?
+    \begin{itemize}
+      \item Building the container image
+      \item Provisioning and I/O of shared storage
+      \item Pipeline Output as a Source
+    \end{itemize}
+    \item What do I gain?
+    \begin{itemize}
+      \item Same building blocks used in CI/CD
+      \item Run in containers from the start
+      \item Parallel execution
+    \end{itemize}
+  \end{itemize}
   % Maybe
   % Local development with minikube
   % Skaffold, ko, gulp
   % Pros and cons
-  % This slide breaks the narrative here
 \end{grayframe}
 
 \section{Conclusions}
 
 \begin{grayframe}
-  \frametitle{Shall I use Tekton Pipelines?}
-  % -Alpha APIs
-  % -Missing Features
-  % -Missing reusable blocks
-  % +Cloud Native
-  % +Relatively small footprint
-  % +Momentum
-  % +Reusable bits, library of Tasks
-  % ...so it depends
-\end{grayframe}
-
-\begin{grayframe}
   \frametitle{Roadmap}
+  \begin{itemize}
+    \item Conditional Execution
+    \item Build Results and Logs
+    \item Pluggable Tasks
+    \item Triggering
+    \item Community Library
+  \end{itemize}
 \end{grayframe}
 
 \begin{grayframe}
