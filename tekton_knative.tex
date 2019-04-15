@@ -53,6 +53,20 @@
 
 % The slide/section order does not match the narrative yet
 
+% Devoxx Talk structure
+
+%% An intro to knative
+% A slide on serving, graph + scale up, down, traffic routes
+% A slide on build, code sample, source to service type of experience
+% A slide or two on eventing, existing framework, v5 slide?
+% The OpenStack Health slide
+% Demo, kubectl get all -n dev, kubectl get pods -n dev --watch
+%% Build and Pipelines
+% knative build pipelines slide
+% latest news slide
+% community?
+%% Tekton Pipeline
+
 \section{A Bit of History}
 
 \begin{lblackrwhiteframe}
@@ -69,6 +83,7 @@
       \end{itemize}
     \end{itemize}
     \begin{itemize}
+      \item OpenSource
       \item Contributors:
       \begin{itemize}
         \item Google
@@ -103,18 +118,11 @@
   \large
   \begin{beamercolorbox}[wd=0.3\paperwidth]{text}
     \begin{itemize}
+      \item Tekton pipelines
       \item Focus on CI/CD
-      \item Deploy ``anywhere``
+      \item @CD Foundation
+      \item Deploy ``anywhere''
       \item Compatible with Knative Build
-    \end{itemize}
-    \begin{itemize}
-      \item {\em tektoncd/pipeline}
-      \begin{itemize}
-        \item New logo
-        \item @CD Foundation
-        \item Roadmap WIP
-        \item Alpha APIs
-      \end{itemize}
     \end{itemize}
   \end{beamercolorbox}%
   \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.25\paperheight)
