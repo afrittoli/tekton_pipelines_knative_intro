@@ -55,17 +55,43 @@
 
 % Devoxx Talk structure
 
-%% An intro to knative
+%% A bit of history
+% Knative slide
+% Community
+%% An intro to knative serving
 % A slide on serving, graph + scale up, down, traffic routes
-% A slide on build, code sample, source to service type of experience
-% A slide or two on eventing, existing framework, v5 slide?
 % The OpenStack Health slide
-% Demo, kubectl get all -n dev, kubectl get pods -n dev --watch
-%% Build and Pipelines
+%% Demo
+% kubectl get all -n dev, kubectl get pods -n dev --watch
+%% An intro to knative eventing
+% A slide or two on eventing, existing framework, v5 slide?
+%% Demo, submit a patch to github, watch the event log
+%% Knative Build and Pipelines
+% A slide on build, code sample, source to service type of experience
+% Slide with complex pipeline
 % knative build pipelines slide
 % latest news slide
-% community?
 %% Tekton Pipeline
+% Cloud Native Pipelines diagram
+% Source to Image / Using Kaniko
+% Diagram of the CD pipeline (I/O/DAG slide reworked)
+% - title to CD pipeline
+% CD Pipeline as Code (remove security?)
+%% Under the Hood
+% Custom resources
+% Pods, Entrypoints and Volumes
+%% Knative Serving and Tekton
+% Pipelines and Knative Build slide
+% CI With Tekton Pipelines reworked
+% - "CI" application is a triggers
+% - manual trigger for the development workflow
+% - diagram from I/O/DAG
+% KService for Health Frontend
+%% Demo
+% Push a change, run run_from_git.sh
+%% Knative Eventing and Tekton
+% Triggering and Knative Eventing / Asynchronous Pipelines
+%% Conclusions
 
 \section{A Bit of History}
 
@@ -101,6 +127,77 @@
   \end{textblock*}
 \end{grayframe}
 
+\begin{grayframe}
+  \frametitle{Community}
+  \begin{itemize}
+    \item {\em Valid for Knative. Tekton TBD.}
+    \item Steering Commitee (SC)
+    \item Technical Oversight Commitee (TOC)
+    \item Various Contribution profiles
+    \item Design, issues: on GitHub
+    \item Communication:
+    \begin{itemize}
+      \item Weekly video meetings, recorded, Build WG
+      \item Asynch: Knative Users / Developers ML
+      \item Sync: slack.knative.dev
+    \end{itemize}
+  \end{itemize}
+\end{grayframe}
+
+\section{Knative Serving}
+
+\begin{tblackbgrayframe}
+  \frametitle{Knative Serving}
+  \begin{textblock*}{\paperwidth}(0.32cm,0.2\paperheight)
+    \centering
+    \includegraphics[width=0.5\paperwidth]{img/knative-serving.png}
+  \end{textblock*}
+\end{tblackbgrayframe}
+
+\begin{grayframe}
+  \frametitle{The Health Application}
+  % Talk about the architecture and git repos
+  \begin{textblock*}{\paperwidth}(0cm,0cm)
+    \includegraphics[width=\paperwidth, height=\paperheight]{img/openstack-health.png}
+  \end{textblock*}
+  \begin{textblock*}{0.2\paperwidth}(0.83\paperwidth,0.83\paperheight)
+    \includegraphics[width=0.03\paperwidth]{img/cc.png}
+    \includegraphics[width=0.03\paperwidth]{img/zero.png}
+  \end{textblock*}
+\end{grayframe}
+
+\section{Knative Serving Demo}
+
+\section{Knative Eventing}
+
+\begin{tblackbgrayframe}
+  \frametitle{Knative Eventing}
+  \begin{textblock*}{\paperwidth}(0.32cm,0.2\paperheight)
+    \centering
+    \includegraphics[width=0.9\paperwidth]{img/eventing-control-plane.png}
+  \end{textblock*}
+\end{tblackbgrayframe}
+
+\section{Knative Eventing Demo}
+
+\section{Knative Build and Pipelines}
+
+\begin{tblackbgrayframe}
+  \frametitle{Knative Build}
+  \begin{textblock*}{\paperwidth}(0.32cm,0.2\paperheight)
+    \centering
+    TBD
+  \end{textblock*}
+\end{tblackbgrayframe}
+
+\begin{tblackbgrayframe}
+  \frametitle{Going further}
+  \begin{textblock*}{\paperwidth}(0.32cm,0.2\paperheight)
+    \centering
+    TBD Diagram of complex pipeline
+  \end{textblock*}
+\end{tblackbgrayframe}
+
 \begin{blackframe}
   \frametitle{\textasciitilde Sept 2018: Knative Pipelines}
   \begin{textblock*}{\paperwidth}(0cm,0.2\paperheight)
@@ -132,23 +229,6 @@
   \end{textblock*}
 \end{lblackrwhiteframe}
 
-\begin{grayframe}
-  \frametitle{Community}
-  \begin{itemize}
-    \item {\em Valid for Knative. Tekton TBD.}
-    \item Steering Commitee (SC)
-    \item Technical Oversight Commitee (TOC)
-    \item Various Contribution profiles
-    \item Design, issues: on GitHub
-    \item Communication:
-    \begin{itemize}
-      \item Weekly video meetings, recorded, Build WG
-      \item Asynch: Knative Users / Developers ML
-      \item Sync: slack.knative.dev
-    \end{itemize}
-  \end{itemize}
-\end{grayframe}
-
 \section{Tekton Pipelines}
 
 \begin{blackframe}
@@ -163,17 +243,48 @@
   \end{textblock*}
 \end{grayframe}
 
-\begin{grayframe}
-  \frametitle{The Health Application}
-  % Talk about the architecture and git repos
-  \begin{textblock*}{\paperwidth}(0cm,0cm)
-    \includegraphics[width=\paperwidth, height=\paperheight]{img/openstack-health.png}
+\begin{lblackrwhiteframe}
+  \frametitle{Using Kaniko}
+  \large
+  \begin{beamercolorbox}[wd=0.45\paperwidth]{text}
+    \begin{itemize}
+      \item Features:
+      \begin{itemize}
+        \item Build from Context and Dockerfile
+        \item Unpriviledged
+        \item Reproducible
+        \item Remote caching of layers
+        \item Base images caching (warmer)
+      \end{itemize}
+    \end{itemize}
+    \vspace{3ex}
+    \begin{itemize}
+      \item Dockefile?
+      \begin{itemize}
+        \item Most common changes last
+        \item Careful with COPY/ADD
+        \item Remove what you don't need
+      \end{itemize}
+    \end{itemize}
+  \end{beamercolorbox}%
+  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.25\paperheight)
+    \centering
+    \includegraphics[width=0.35\paperwidth]{img/Kaniko-Logo.png}
   \end{textblock*}
-  \begin{textblock*}{0.2\paperwidth}(0.83\paperwidth,0.83\paperheight)
-    \includegraphics[width=0.03\paperwidth]{img/cc.png}
-    \includegraphics[width=0.03\paperwidth]{img/zero.png}
-  \end{textblock*}
-\end{grayframe}
+\end{lblackrwhiteframe}
+
+\begin{2columnsframe}
+  {
+  {\tiny Source to Image (spec only): \\}
+  \lstinputlisting[language=koyaml,firstline=6,lastline=31]{code/task-source-to-image.yaml}
+  }
+  {
+  \lstinputlisting[language=koyaml,firstline=32,lastline=55]{code/task-source-to-image.yaml}
+  {\tiny Cache Warmer (spec only): \\}
+  \lstinputlisting[language=koyaml,firstline=21,lastline=35]{code/task-kaniko-cache.yaml}
+  }
+  \frametitle{Using Kaniko}
+\end{2columnsframe}
 
 \begin{2columnsframe}
   {
@@ -196,6 +307,24 @@
   }
   \frametitle{Inputs, Outputs \& DAG}
   % Graph of a simple health pipeline
+\end{2columnsframe}
+
+\begin{2columnsframe}
+  {
+  \begin{itemize}
+    \item Pipeline and Tasks in git (YAML)
+    \item Parameters for env/run specific
+    \item Security?
+  \end{itemize}
+  \vspace{3ex}
+  \lstinputlisting[language=koyaml]{code/resource-git.yaml}
+  }
+  {
+  \lstinputlisting[language=koyaml]{code/resource-cluster.yaml}
+  \vspace{1ex}
+  \lstinputlisting[language=koyaml]{code/resource-image.yaml}
+  }
+  \frametitle{CD Pipeline as code}
 \end{2columnsframe}
 
 \section{Under the Hood}
@@ -261,109 +390,38 @@
   \frametitle{Pods, Entrypoints \& Volumes}
 \end{2columnsframe}
 
-\section{Source to Image to Deploy}
+% \begin{lblackrwhiteframe}
+%   \frametitle{IBM Cloud}
+%   \large
+%   \begin{beamercolorbox}[wd=0.4\paperwidth]{text}
+%     \begin{itemize}
+%       \item Private Registry:
+%       \begin{itemize}
+%         \item Tekon Images (push/pull)
+%         \item User Images (push/pull)
+%       \end{itemize}
+%       \item Service Accounts:
+%       \begin{itemize}
+%         \item {\em tekton-pipelines-controller}
+%         \item Pipeline/Task service account
+%       \end{itemize}
+%     \end{itemize}
+%     \vspace{3ex}
+%     \begin{itemize}
+%       \item Knative @ IBM Cloud
+%       \begin{itemize}
+%         \item Experimental Add-on
+%         \item {\em ibmcloud ks cluster-addon-enable knative}
+%       \end{itemize}
+%     \end{itemize}
+%   \end{beamercolorbox}%
+%   \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.3\paperheight)
+%     \centering
+%     \includegraphics[width=0.35\paperwidth]{img/IBM-Cloud.png}
+%   \end{textblock*}
+% \end{lblackrwhiteframe}
 
-\begin{lblackrwhiteframe}
-  \frametitle{IBM Cloud}
-  \large
-  \begin{beamercolorbox}[wd=0.4\paperwidth]{text}
-    \begin{itemize}
-      \item Private Registry:
-      \begin{itemize}
-        \item Tekon Images (push/pull)
-        \item User Images (push/pull)
-      \end{itemize}
-      \item Service Accounts:
-      \begin{itemize}
-        \item {\em tekton-pipelines-controller}
-        \item Pipeline/Task service account
-      \end{itemize}
-    \end{itemize}
-    \vspace{3ex}
-    \begin{itemize}
-      \item Knative @ IBM Cloud
-      \begin{itemize}
-        \item Experimental Add-on
-        \item {\em ibmcloud ks cluster-addon-enable knative}
-      \end{itemize}
-    \end{itemize}
-  \end{beamercolorbox}%
-  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.3\paperheight)
-    \centering
-    \includegraphics[width=0.35\paperwidth]{img/IBM-Cloud.png}
-  \end{textblock*}
-\end{lblackrwhiteframe}
-
-\begin{2columnsframe}
-  {
-  \begin{itemize}
-    \item Pipeline and Tasks in git (YAML)
-    \item Parameters for env/run specific
-    \item Security?
-  \end{itemize}
-  \vspace{3ex}
-  \lstinputlisting[language=koyaml]{code/resource-git.yaml}
-  }
-  {
-  \lstinputlisting[language=koyaml]{code/resource-cluster.yaml}
-  \vspace{1ex}
-  \lstinputlisting[language=koyaml]{code/resource-image.yaml}
-  }
-  \frametitle{CD Pipeline as code}
-\end{2columnsframe}
-
-\begin{lblackrwhiteframe}
-  \frametitle{Using Kaniko}
-  \large
-  \begin{beamercolorbox}[wd=0.45\paperwidth]{text}
-    \begin{itemize}
-      \item Features:
-      \begin{itemize}
-        \item Build from Context and Dockerfile
-        \item Unpriviledged
-        \item Reproducible
-        \item Remote caching of layers
-        \item Base images caching (warmer)
-      \end{itemize}
-    \end{itemize}
-    \vspace{3ex}
-    \begin{itemize}
-      \item Dockefile?
-      \begin{itemize}
-        \item Most common changes last
-        \item Careful with COPY/ADD
-        \item Remove what you don't need
-      \end{itemize}
-    \end{itemize}
-  \end{beamercolorbox}%
-  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.25\paperheight)
-    \centering
-    \includegraphics[width=0.35\paperwidth]{img/Kaniko-Logo.png}
-  \end{textblock*}
-\end{lblackrwhiteframe}
-
-\begin{2columnsframe}
-  {
-  {\tiny Source to Image (spec only): \\}
-  \lstinputlisting[language=koyaml,firstline=6,lastline=31]{code/task-source-to-image.yaml}
-  }
-  {
-  \lstinputlisting[language=koyaml,firstline=32,lastline=55]{code/task-source-to-image.yaml}
-  {\tiny Cache Warmer (spec only): \\}
-  \lstinputlisting[language=koyaml,firstline=21,lastline=35]{code/task-kaniko-cache.yaml}
-  }
-  \frametitle{Using Kaniko}
-\end{2columnsframe}
-
-\section{Tekton and Knative}
-
-\begin{tblackbgrayframe}
-  \frametitle{Knative Serving}
-  \begin{textblock*}{\paperwidth}(0.32cm,0.2\paperheight)
-    \centering
-    \includegraphics[width=0.5\paperwidth]{img/knative-serving.png}
-  \end{textblock*}
-\end{tblackbgrayframe}
+\section{Tekton and Knative Serving}
 
 \begin{grayframe}
   \frametitle{Pipelines and Knative Build}
@@ -421,15 +479,9 @@
   \frametitle{KService for Health Frontend}
 \end{2columnsframe}
 
-\section{Asynchronous Pipelines}
+\section{Demo Tekton and Knative Serving}
 
-\begin{tblackbgrayframe}
-  \frametitle{Knative Eventing}
-  \begin{textblock*}{\paperwidth}(0.32cm,0.2\paperheight)
-    \centering
-    \includegraphics[width=0.9\paperwidth]{img/eventing-control-plane.png}
-  \end{textblock*}
-\end{tblackbgrayframe}
+\section{Asynchronous Pipelines}
 
 \begin{2columnsframe}
   % Manual trigger
@@ -461,28 +513,28 @@
   \frametitle{Triggering and Knative Eventing}
 \end{2columnsframe}
 
-\begin{grayframe}
-  \frametitle{Tekton and Development}
-  \begin{itemize}
-    \item It depends.
-    \item What can go wrong?
-    \begin{itemize}
-      \item Building the container image
-      \item Provisioning and I/O of shared storage
-      \item Pipeline Output as a Source
-    \end{itemize}
-    \item What do I gain?
-    \begin{itemize}
-      \item Same building blocks used in CI/CD
-      \item Run in containers from the start
-      \item Parallel execution
-    \end{itemize}
-  \end{itemize}
-  % Maybe
-  % Local development with minikube
-  % Skaffold, ko, gulp
-  % Pros and cons
-\end{grayframe}
+% \begin{grayframe}
+%   \frametitle{Tekton and Development}
+%   \begin{itemize}
+%     \item It depends.
+%     \item What can go wrong?
+%     \begin{itemize}
+%       \item Building the container image
+%       \item Provisioning and I/O of shared storage
+%       \item Pipeline Output as a Source
+%     \end{itemize}
+%     \item What do I gain?
+%     \begin{itemize}
+%       \item Same building blocks used in CI/CD
+%       \item Run in containers from the start
+%       \item Parallel execution
+%     \end{itemize}
+%   \end{itemize}
+%   % Maybe
+%   % Local development with minikube
+%   % Skaffold, ko, gulp
+%   % Pros and cons
+% \end{grayframe}
 
 \section{Conclusions}
 
