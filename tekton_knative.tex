@@ -130,14 +130,14 @@
 \begin{grayframe}
   \frametitle{Community}
   \begin{itemize}
-    \item {\em Valid for Knative. Tekton TBD.}
     \item Steering Commitee (SC)
     \item Technical Oversight Commitee (TOC)
+    \item Dedicated Working Groups (WG)
     \item Various Contribution profiles
     \item Design, issues: on GitHub
     \item Communication:
     \begin{itemize}
-      \item Weekly video meetings, recorded, Build WG
+      \item WG periodic meetings, recorded
       \item Asynch: Knative Users / Developers ML
       \item Sync: slack.knative.dev
     \end{itemize}
@@ -146,11 +146,18 @@
 
 \section{Knative Serving}
 
-\begin{tblackbgrayframe}
+\begin{lblackrwhiteframe}
   \frametitle{Knative Serving}
-  \begin{textblock*}{\paperwidth}(0.32cm,0.2\paperheight)
+  \begin{beamercolorbox}[wd=0.4\paperwidth]{text}
+    \begin{itemize}
+      \item Scale to Zero
+      \item Scale up based on metrics
+      \item Multiple revisions
+    \end{itemize}
+  \end{beamercolorbox}%
+  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.2\paperheight)
     \centering
-    \includegraphics[width=0.5\paperwidth]{img/knative-serving.png}
+    \includegraphics[width=0.45\paperwidth]{img/knative-serving.png}
   \end{textblock*}
 \end{tblackbgrayframe}
 
@@ -167,6 +174,12 @@
 \end{grayframe}
 
 \section{Knative Serving Demo}
+% kubectl get all -n dev
+% kubectl get pods -n dev --watch
+% curl [API end point]
+% curl [FE endpoint]
+% Show in browser
+% ...later: show scale back down to zero
 
 \section{Knative Eventing}
 
@@ -176,25 +189,36 @@
     \centering
     \includegraphics[width=0.9\paperwidth]{img/eventing-control-plane.png}
   \end{textblock*}
+  % Talk about events as triggers for serverless services
+  % Sources: git, k8s events
+  % Channel: in memory, kafka, others
+  % Subscriptions: service to a channel
+  % v5: Brokers and Triggers
 \end{tblackbgrayframe}
 
 \section{Knative Eventing Demo}
+% submit a patch to github, watch the event log
 
 \section{Knative Build and Pipelines}
 
-\begin{tblackbgrayframe}
+\begin{2columnsframe}
+  {
+  \begin{itemize}
+    \item Source to image
+    \item Build Templates
+    \item How to make a new revision
+  \end{itemize}
+  }
+  {
+  \lstinputlisting[language=koyaml,firstline=1,lastline=25]{code/source-to-url-go.yaml}
+  }
   \frametitle{Knative Build}
-  \begin{textblock*}{\paperwidth}(0.32cm,0.2\paperheight)
-    \centering
-    TBD
-  \end{textblock*}
-\end{tblackbgrayframe}
+\end{2columnsframe}
 
 \begin{tblackbgrayframe}
   \frametitle{Going further}
-  \begin{textblock*}{\paperwidth}(0.32cm,0.2\paperheight)
-    \centering
-    TBD Diagram of complex pipeline
+  \begin{textblock*}{0.75\paperwidth}(0.15\paperwidth,0.25\paperheight)
+    \includegraphics[width=0.75\paperwidth]{img/test-pipeline.png}
   \end{textblock*}
 \end{tblackbgrayframe}
 
@@ -219,7 +243,7 @@
       \item Focus on CI/CD
       \item @CD Foundation
       \item Deploy ``anywhere''
-      \item Compatible with Knative Build
+      \item ``Compatible'' with Knative
     \end{itemize}
   \end{beamercolorbox}%
   \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.25\paperheight)
@@ -242,6 +266,41 @@
     \includegraphics[width=0.03\paperwidth]{img/zero.png}
   \end{textblock*}
 \end{grayframe}
+
+\begin{2columnsframe}
+  {
+    \begin{itemize}
+      \item Steps are sequential
+      \item Tasks are a Directed Acyclic Graph
+      \item Order defined by:
+      \begin{itemize}
+        \item {\em from}: input / output
+        \item {\em runAfter}: enforced ordering
+      \end{itemize}
+    \end{itemize}
+  }
+  % Graph of a CD pipeline
+  {
+  \begin{textblock*}{0.65\paperwidth}(0.30\paperwidth,0.30\paperheight)
+    \centering
+    \includegraphics[width=0.65\paperwidth]{img/pipeline.png}
+  \end{textblock*}
+  }
+  \frametitle{Task Inputs, Outputs \& DAG}
+\end{2columnsframe}
+
+\begin{2columnsframe}
+  {
+  {\tiny Source to Image (spec only): \\}
+  \lstinputlisting[language=koyaml,firstline=6,lastline=31]{code/task-source-to-image.yaml}
+  }
+  {
+  \lstinputlisting[language=koyaml,firstline=32,lastline=55]{code/task-source-to-image.yaml}
+  {\tiny Cache Warmer (spec only): \\}
+  \lstinputlisting[language=koyaml,firstline=21,lastline=35]{code/task-kaniko-cache.yaml}
+  }
+  \frametitle{Source to Image with Kaniko}
+\end{2columnsframe}
 
 \begin{lblackrwhiteframe}
   \frametitle{Using Kaniko}
@@ -267,47 +326,11 @@
       \end{itemize}
     \end{itemize}
   \end{beamercolorbox}%
-  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.25\paperheight)
+  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.30\paperheight)
     \centering
     \includegraphics[width=0.35\paperwidth]{img/Kaniko-Logo.png}
   \end{textblock*}
 \end{lblackrwhiteframe}
-
-\begin{2columnsframe}
-  {
-  {\tiny Source to Image (spec only): \\}
-  \lstinputlisting[language=koyaml,firstline=6,lastline=31]{code/task-source-to-image.yaml}
-  }
-  {
-  \lstinputlisting[language=koyaml,firstline=32,lastline=55]{code/task-source-to-image.yaml}
-  {\tiny Cache Warmer (spec only): \\}
-  \lstinputlisting[language=koyaml,firstline=21,lastline=35]{code/task-kaniko-cache.yaml}
-  }
-  \frametitle{Using Kaniko}
-\end{2columnsframe}
-
-\begin{2columnsframe}
-  {
-    \begin{itemize}
-      \item Steps are sequential
-      \item Tasks are a Directed Acyclic Graph
-      \item Order defined by:
-      \begin{itemize}
-        \item {\em from}: input from another task's output
-        \item {\em runAfter}: enforced task ordering
-      \end{itemize}
-    \end{itemize}
-    % Add another pipeline example
-    \begin{textblock*}{0.8\paperwidth}(0.15\paperwidth,0.50\paperheight)
-      \includegraphics[width=0.45\paperwidth]{img/test-pipeline.png}
-    \end{textblock*}
-  }
-  {
-    \includegraphics[width=0.4\paperwidth]{img/pipeline.png}
-  }
-  \frametitle{Inputs, Outputs \& DAG}
-  % Graph of a simple health pipeline
-\end{2columnsframe}
 
 \begin{2columnsframe}
   {
