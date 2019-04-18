@@ -13,7 +13,7 @@
 \date[devoxxfr]{April 18th 2019}
 \author[Andrea]{
   Andrea Frittoli \\
-  Developer Advocate \\
+  Open Source Developer Advocate \\
   andrea.frittoli@uk.ibm.com \\
   @blackchip76
 }
@@ -174,7 +174,7 @@
 \end{grayframe}
 
 \section{Knative Serving Demo}
-% kubectl get all -n dev
+% kubectl get ksvc -n dev
 % kubectl get pods -n dev --watch
 % curl [API end point]
 % curl [FE endpoint]
@@ -198,6 +198,12 @@
 
 \section{Knative Eventing Demo}
 % submit a patch to github, watch the event log
+
+% # Make a code change
+% git commit --amend
+% git push origin devoxx_demo --force
+% # See the event coming in
+% kubectl logs $(kubectl get pods -l serving.knative.dev/configuration=github-message-dumper --no-headers -o custom-columns=":metadata.name") -c user-container
 
 \section{Knative Build and Pipelines}
 
@@ -335,19 +341,29 @@
 \begin{2columnsframe}
   {
   \begin{itemize}
-    \item Pipeline and Tasks in git (YAML)
-    \item Parameters for env/run specific
-    \item Security?
+    \item Pipeline and Tasks:
+    \begin{itemize}
+      \item Static definition, stored in git
+    \end{itemize}
+    \item PipelineRuns and TaskRuns:
+    \begin{itemize}
+      \item Specific to one execution
+      \item Generated programmatically
+    \end{itemize}
+    \item Parameters and Resources:
+    \begin{itemize}
+      \item Env / run specific
+    \end{itemize}
   \end{itemize}
-  \vspace{3ex}
+  \vspace{0.3ex}
   \lstinputlisting[language=koyaml]{code/resource-git.yaml}
   }
   {
   \lstinputlisting[language=koyaml]{code/resource-cluster.yaml}
-  \vspace{1ex}
+  \vspace{0.3ex}
   \lstinputlisting[language=koyaml]{code/resource-image.yaml}
   }
-  \frametitle{CD Pipeline as code}
+  \frametitle{Pipeline as code}
 \end{2columnsframe}
 
 \section{Under the Hood}
@@ -452,14 +468,17 @@
   % Build probably won't be developed much further
   % ...but you never know
   % Do something more complex with pipelines
-  \begin{textblock*}{0.5\paperwidth}(0.20\paperwidth,0.30\paperheight)
+  \begin{textblock*}{0.45\paperwidth}(0.25\paperwidth,0.15\paperheight)
     \centering
-    \includegraphics[width=0.6\paperwidth]{img/knative+tekton.png}
+    \includegraphics[width=0.45\paperwidth]{img/knative+tekton.png}
+  \end{textblock*}
+  \begin{textblock*}{0.45\paperwidth}(0.25\paperwidth,0.55\paperheight)
+    \includegraphics[width=0.45\paperwidth]{img/tekton_dev.png}
   \end{textblock*}
 \end{grayframe}
 
-\begin{lblackrwhiteframe}
-  \frametitle{CI with Tekton Pipelines}
+% \begin{lblackrwhiteframe}
+%   \frametitle{CI with Tekton Pipelines}
   % It's not a CI engine...
   % ...but it works well with one
   % Dogfooding
@@ -468,29 +487,29 @@
   % - jenkinsX, prow
   % - gitlab? pivotal? to be checked
   % - higher level abstractions
-  \large
-  \begin{beamercolorbox}[wd=0.45\paperwidth]{text}
-    You need a ``CI`` application: \\
-    \begin{itemize}
-      \item Prow, JenkinsX, Zuul...
-      \item Pipelines triggered by a CI app
-      \item ...or by a developer
-    \end{itemize}
-    \vspace{3ex}
-    Tekton to CI for Tekton (AKA Dogfooding) \textbackslash o/ \\
-    \vspace{3ex}
-    What about security?
-    \begin{itemize}
-      \item Malicious users
-      \item Running a pipeline from a PR
-      \item Access to secrets
-    \end{itemize}
-  \end{beamercolorbox}%
-  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.15\paperheight)
-    \centering
-    \includegraphics[width=0.45\paperwidth]{img/tekton_ci.png}
-  \end{textblock*}
-\end{lblackrwhiteframe}
+%   \large
+%   \begin{beamercolorbox}[wd=0.45\paperwidth]{text}
+%     You need a ``CI'' application: \\
+%     \begin{itemize}
+%       \item Prow, JenkinsX, Zuul...
+%       \item Pipelines triggered by a CI app
+%       \item ...or by a developer
+%     \end{itemize}
+%     \vspace{3ex}
+%     Tekton to CI for Tekton (AKA Dogfooding) \textbackslash o/ \\
+%     \vspace{3ex}
+%     What about security?
+%     \begin{itemize}
+%       \item Malicious users
+%       \item Running a pipeline from a PR
+%       \item Access to secrets
+%     \end{itemize}
+%   \end{beamercolorbox}%
+%   \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.15\paperheight)
+%     \centering
+%     \includegraphics[width=0.45\paperwidth]{img/tekton_ci.png}
+%   \end{textblock*}
+% \end{lblackrwhiteframe}
 
 \begin{2columnsframe}
   {
@@ -504,7 +523,7 @@
 
 \section{Demo Tekton and Knative Serving}
 
-\section{Asynchronous Pipelines}
+\section{Tekton and Knative Eventing}
 
 \begin{2columnsframe}
   % Manual trigger
@@ -517,18 +536,17 @@
   % -> release (CD)
   {
   \begin{itemize}
-    \item Manual trigger for {\em PipelineRun}
-    \item Native Eventing triggers TBD
-    \item What about async pipelines?
+    \item Aysnchronous Pipelines
     \begin{itemize}
       \item GitHub Source
       \item Container Source
       \item Pipeline Output as a Source
     \end{itemize}
+    \item Manual trigger for now
   \end{itemize}
   }
   {
-  \begin{textblock*}{0.6\paperwidth}(0.35\paperwidth,0.35\paperheight)
+  \begin{textblock*}{0.6\paperwidth}(0.35\paperwidth,0.23\paperheight)
     \centering
     \includegraphics[width=0.6\paperwidth]{img/async_pipelines.png}
   \end{textblock*}
@@ -560,11 +578,6 @@
 % \end{grayframe}
 
 \section {Demo Tekton and Knative Eventing}
-% # Make a code change
-% git commit --amend
-% git push origin devoxx_demo --force
-% # See the event coming in
-% kubectl logs $(kubectl get pods -l serving.knative.dev/configuration=github-message-dumper --no-headers -o custom-columns=":metadata.name") -c user-container
 % # On the glue repo
 % ko apply -f config
 % kubectl get pods -l serving.knative.dev/github-tekton-glue
@@ -575,6 +588,28 @@
 % # Run the watch command to see the pipeline running
 
 \section{Conclusions}
+
+\begin{grayframe}
+  \frametitle{Dev, CI and CD}
+  \begin{itemize}
+    \item Development Workflow:
+    \begin{itemize}
+      \item + Local or in-cluster
+      \item + Reproducibility
+      \item + Parallel execution
+      \item - Can be slow
+    \end{itemize}
+    \item CI / CD:
+    \begin{itemize}
+      \item + Integrates with CI systems
+      \item + Re-usable blocks
+      \item + Best practices
+      \item + Small Footprint
+      \item - Depends on k8s
+      \item - Security
+    \end{itemize}
+  \end{itemize}
+\end{grayframe}
 
 \begin{grayframe}
   \frametitle{Conclusions}
