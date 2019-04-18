@@ -559,16 +559,40 @@
 %   % Pros and cons
 % \end{grayframe}
 
+\section {Demo Tekton and Knative Eventing}
+% # Make a code change
+% git commit --amend
+% git push origin devoxx_demo --force
+% # See the event coming in
+% kubectl logs $(kubectl get pods -l serving.knative.dev/configuration=github-message-dumper --no-headers -o custom-columns=":metadata.name") -c user-container
+% # On the glue repo
+% ko apply -f config
+% kubectl get pods -l serving.knative.dev/github-tekton-glue
+% # Make a change again
+% git commit --amend
+% git push origin devoxx_demo --force
+% kubectl logs $(kubectl get pods -l serving.knative.dev/configuration=github-tekton-glue --no-headers -o custom-columns=":metadata.name") -c user-container
+% # Run the watch command to see the pipeline running
+
 \section{Conclusions}
 
 \begin{grayframe}
-  \frametitle{Roadmap}
+  \frametitle{Conclusions}
   \begin{itemize}
-    \item Conditional Execution
-    \item Build Results and Logs
-    \item Pluggable Tasks
-    \item Triggering
-    \item Community Library
+    \item Tekton:
+    \begin{itemize}
+      \item Not only for knative
+      \item Knative first class citizen
+      \item Very early days
+    \end{itemize}
+    \item Tekton Roadmap:
+    \begin{itemize}
+      \item Conditional Execution
+      \item Build Results and Logs
+      \item Pluggable Tasks
+      \item Triggering
+      \item Community Library
+    \end{itemize}
   \end{itemize}
 \end{grayframe}
 
@@ -576,17 +600,24 @@
   \frametitle{References}
   \begin{itemize}
     \item This Talk: https://github.com/afrittoli/tekton\_pipelines\_knative\_intro
-    \item https://tekton.dev/, https://cd.foundation/
-    \item https://github.com/tektoncd/pipeline
-    \item https://github.com/knative/docs/tree/master/community
-    \item https://github.com/tektoncd/pipeline
-    \item https://github.com/tektoncd/pipeline/blob/master/api\_compatibility\_policy.md
-    \item https://github.com/tektoncd/pipeline/blob/master/roadmap-2019.md
-    \item https://github.com/GoogleContainerTools/kaniko
-    \item https://github.com/afrittoli/health-helm/tree/knative
-    \item https://github.com/afrittoli/openstack-health/tree/knative-eventing
-    \item https://andreafrittoli.me
-    \item https://cloud.ibm.com
+    \item Tekton Links:
+    \begin{itemize}
+      \item https://tekton.dev/, https://cd.foundation/
+      \item https://github.com/tektoncd/pipeline
+      \item https://github.com/tektoncd/pipeline
+      \item https://github.com/tektoncd/pipeline/blob/master/api\_compatibility\_policy.md
+      \item https://github.com/tektoncd/pipeline/blob/master/roadmap-2019.md
+    \end{itemize}
+    \item Knative Community: https://github.com/knative/docs/tree/master/community
+    \item Kaniko: https://github.com/GoogleContainerTools/kaniko
+    \item Source code and my blog:
+    \begin{itemize}
+      \item https://github.com/afrittoli/health-helm/tree/knative
+      \item https://github.com/afrittoli/openstack-health/tree/knative-eventing
+      \item https://github.com/afrittoli/github\_tekton\_glue
+      \item https://andreafrittoli.me
+    \end{itemize}
+    \item IBM Cloud: https://cloud.ibm.com
   \end{itemize}
 \end{grayframe}
 
