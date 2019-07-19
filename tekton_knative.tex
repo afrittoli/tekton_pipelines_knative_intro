@@ -10,7 +10,7 @@
 
 
 \title{Cloud Native CI/CD with Knative and Tekton Pipelines}
-\date[devoxxfr]{April 18th 2019}
+\date[ossjp2019]{July 19th 2019}
 \author[Andrea]{
   Andrea Frittoli \\
   Open Source Developer Advocate \\
@@ -18,7 +18,7 @@
   @blackchip76
 }
 \institute[devoxxfr]{
-  Devoxx France, 8ème édition
+  Open Source Summit Japan 2019
 }
 
 \usetheme{ibmcloud}
@@ -53,16 +53,14 @@
 
 % The slide/section order does not match the narrative yet
 
-% Devoxx Talk structure
-
 %% A bit of history
 % Knative slide
-% Community
+% Community (remove?)
 %% An intro to knative serving
 % A slide on serving, graph + scale up, down, traffic routes
-% The OpenStack Health slide
-%% Demo
-% kubectl get all -n dev, kubectl get pods -n dev --watch
+%% Demo (what are we going to demo here?
+% kubectl get pods --watch | grep githubsource
+% leave a comment on the PR
 %% An intro to knative eventing
 % A slide or two on eventing, existing framework, v5 slide?
 %% Demo, submit a patch to github, watch the event log
@@ -73,13 +71,39 @@
 % latest news slide
 %% Tekton Pipeline
 % Cloud Native Pipelines diagram
+
+% here I want to start talking about some of the under the hood
+% then ok, let's give an example
 % Source to Image / Using Kaniko
+% TaskRun and resources example (take from pipeline as code)
+% oh no, how much yaml -> catalog projetc
+% so, what can we do?
 % Diagram of the CD pipeline (I/O/DAG slide reworked)
-% - title to CD pipeline
-% CD Pipeline as Code (remove security?)
-%% Under the Hood
+% This used to be a combination of bash scripts and YAML configs
+% ...now it's just YAML configs, but declarative, reusable
+% intro to the CLI and dashbord
+
+%% Under the Hood (rework here, I might want to still say something, but better
+% do it during the demo
 % Custom resources
 % Pods, Entrypoints and Volumes
+
+% So now let's go back to the full Demo. This is the CI use case
+% Diagram
+% Run the Demo
+% Look at the dashboard
+% Look at the CLI
+% Look at glue Logs
+% Show details of pipeline, tasks, runs, resources, pods and so
+
+% Slide about dogfooding, making releases -> we reuse tasks for testing from CI
+
+% And finally back to Tekton / Serving integration
+% this is how it looks like, but no demo
+% do we want this? Well, it's handy for the local development use case
+% no upload from local source yet, but do-able. We might support it in tekton
+% or at least document it
+
 %% Knative Serving and Tekton
 % Pipelines and Knative Build slide
 % CI With Tekton Pipelines reworked
@@ -87,11 +111,13 @@
 % - manual trigger for the development workflow
 % - diagram from I/O/DAG
 % KService for Health Frontend
-%% Demo
-% Push a change, run run_from_git.sh
-%% Knative Eventing and Tekton
-% Triggering and Knative Eventing / Asynchronous Pipelines
+
+% Add a slide about integrations
+% JenkinsX, OpenShift pipelines, IBM Pipelines, Kabanero
+
 %% Conclusions
+% rework conclusions, add to the roadmap
+% check links
 
 \section{A Bit of History}
 
@@ -161,25 +187,30 @@
   \end{textblock*}
 \end{tblackbgrayframe}
 
-\begin{grayframe}
-  \frametitle{The Health Application}
-  % Talk about the architecture and git repos
-  \begin{textblock*}{\paperwidth}(0cm,0cm)
-    \includegraphics[width=\paperwidth, height=\paperheight]{img/openstack-health.png}
-  \end{textblock*}
-  \begin{textblock*}{0.2\paperwidth}(0.83\paperwidth,0.83\paperheight)
-    \includegraphics[width=0.03\paperwidth]{img/cc.png}
-    \includegraphics[width=0.03\paperwidth]{img/zero.png}
-  \end{textblock*}
-\end{grayframe}
+% \begin{grayframe}
+%   \frametitle{The Health Application}
+%   % Talk about the architecture and git repos
+%   \begin{textblock*}{\paperwidth}(0cm,0cm)
+%     \includegraphics[width=\paperwidth, height=\paperheight]{img/openstack-health.png}
+%   \end{textblock*}
+%   \begin{textblock*}{0.2\paperwidth}(0.83\paperwidth,0.83\paperheight)
+%     \includegraphics[width=0.03\paperwidth]{img/cc.png}
+%     \includegraphics[width=0.03\paperwidth]{img/zero.png}
+%   \end{textblock*}
+% \end{grayframe}
 
 \section{Knative Serving Demo}
-% kubectl get ksvc -n dev
-% kubectl get pods -n dev --watch
-% curl [API end point]
-% curl [FE endpoint]
-% Show in browser
-% ...later: show scale back down to zero
+% kubectl get ksvc
+% kubectl get pods --watch | grep githubsource
+% leave a comment on https://github.com/afrittoli/openstack-health/pull/1
+
+\begin{tblackbgrayframe}
+  \frametitle{Knative Serving Demo}
+  \begin{textblock*}{\paperwidth}(0.32cm,0.3\paperheight)
+    \centering
+    \includegraphics[width=0.7\paperwidth]{img/knative-serving-demo.png}
+  \end{textblock*}
+\end{tblackbgrayframe}
 
 \section{Knative Eventing}
 
@@ -245,11 +276,11 @@
   \large
   \begin{beamercolorbox}[wd=0.3\paperwidth]{text}
     \begin{itemize}
-      \item Tekton pipelines
+      \item Tekton pipelines (March 2019)
       \item Focus on CI/CD
-      \item @CD Foundation
+      \item @CD Foundation  (March 2019)
       \item Deploy ``anywhere''
-      \item ``Compatible'' with Knative
+      \item Replaces with Knative Build (June 2019)
     \end{itemize}
   \end{beamercolorbox}%
   \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.25\paperheight)
