@@ -32,6 +32,23 @@
   \end{frame}
 }
 
+% Custom Frames
+\newenvironment{whiteframe}
+{
+  \setbeamercolor{background canvas}{bg=white}
+  \setbeamercolor{palette primary}{fg=ibmblack}
+  \setbeamercolor{titlelike}{fg=ibmblack}
+  \setbeamercolor{normal text}{fg=ibmblack}
+  \setbeamercolor{frametitle}{fg=ibmblack}
+  \setbeamercolor{author}{fg=ibmblack}
+  \setbeamercolor*{footline}{fg=ibmblack}
+  \usebeamercolor[fg]{normal text}
+  \begin{frame}[t]
+}
+{
+  \end{frame}
+}
+
 \newenvironment{grayframe}
 {
   \setbeamercolor{background canvas}{bg=ibmlightgray}

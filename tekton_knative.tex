@@ -206,9 +206,9 @@
 
 \begin{tblackbgrayframe}
   \frametitle{Knative Serving Demo}
-  \begin{textblock*}{\paperwidth}(0.32cm,0.3\paperheight)
+  \begin{textblock*}{\paperwidth}(0.32cm,0.4\paperheight)
     \centering
-    \includegraphics[width=0.7\paperwidth]{img/knative-serving-demo.png}
+    \includegraphics[width=0.65\paperwidth]{img/knative-serving-demo.png}
   \end{textblock*}
 \end{tblackbgrayframe}
 
@@ -228,13 +228,18 @@
 \end{tblackbgrayframe}
 
 \section{Knative Eventing Demo}
-% submit a patch to github, watch the event log
-
-% # Make a code change
-% git commit --amend
-% git push origin devoxx_demo --force
+% kubectl get pods --watch | grep github-message-dumper
+% delete a comment on the PR
 % # See the event coming in
 % kubectl logs $(kubectl get pods -l serving.knative.dev/configuration=github-message-dumper --no-headers -o custom-columns=":metadata.name") -c user-container
+
+\begin{tblackbgrayframe}
+  \frametitle{Knative Eventing Demo}
+  \begin{textblock*}{\paperwidth}(0.32cm,0.4\paperheight)
+    \centering
+    \includegraphics[width=0.8\paperwidth]{img/knative-serving-eventing-demo.png}
+  \end{textblock*}
+\end{tblackbgrayframe}
 
 \section{Knative Build and Pipelines}
 
@@ -274,13 +279,13 @@
 \begin{lblackrwhiteframe}
   \frametitle{Latest news!}
   \large
-  \begin{beamercolorbox}[wd=0.3\paperwidth]{text}
+  \begin{beamercolorbox}[wd=0.35\paperwidth]{text}
     \begin{itemize}
       \item Tekton pipelines (March 2019)
       \item Focus on CI/CD
       \item @CD Foundation  (March 2019)
       \item Deploy ``anywhere''
-      \item Replaces with Knative Build (June 2019)
+      \item Replaces Knative Build (June 2019)
     \end{itemize}
   \end{beamercolorbox}%
   \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.25\paperheight)
@@ -323,7 +328,7 @@
     \includegraphics[width=0.65\paperwidth]{img/pipeline.png}
   \end{textblock*}
   }
-  \frametitle{Task Inputs, Outputs \& DAG}
+  \frametitle{Sample pipeline}
 \end{2columnsframe}
 
 \begin{2columnsframe}
@@ -333,41 +338,41 @@
   }
   {
   \lstinputlisting[language=koyaml,firstline=32,lastline=55]{code/task-source-to-image.yaml}
-  {\tiny Cache Warmer (spec only): \\}
-  \lstinputlisting[language=koyaml,firstline=21,lastline=35]{code/task-kaniko-cache.yaml}
+  % {\tiny Cache Warmer (spec only): \\}
+  % \lstinputlisting[language=koyaml,firstline=21,lastline=35]{code/task-kaniko-cache.yaml}
   }
-  \frametitle{Source to Image with Kaniko}
+  \frametitle{Sample Task: Source to Image}
 \end{2columnsframe}
 
-\begin{lblackrwhiteframe}
-  \frametitle{Using Kaniko}
-  \large
-  \begin{beamercolorbox}[wd=0.45\paperwidth]{text}
-    \begin{itemize}
-      \item Features:
-      \begin{itemize}
-        \item Build from Context and Dockerfile
-        \item Unpriviledged
-        \item Reproducible
-        \item Remote caching of layers
-        \item Base images caching (warmer)
-      \end{itemize}
-    \end{itemize}
-    \vspace{3ex}
-    \begin{itemize}
-      \item Dockefile?
-      \begin{itemize}
-        \item Most common changes last
-        \item Careful with COPY/ADD
-        \item Remove what you don't need
-      \end{itemize}
-    \end{itemize}
-  \end{beamercolorbox}%
-  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.30\paperheight)
-    \centering
-    \includegraphics[width=0.35\paperwidth]{img/Kaniko-Logo.png}
-  \end{textblock*}
-\end{lblackrwhiteframe}
+% \begin{lblackrwhiteframe}
+%   \frametitle{Using Kaniko}
+%   \large
+%   \begin{beamercolorbox}[wd=0.45\paperwidth]{text}
+%     \begin{itemize}
+%       \item Features:
+%       \begin{itemize}
+%         \item Build from Context and Dockerfile
+%         \item Unpriviledged
+%         \item Reproducible
+%         \item Remote caching of layers
+%         \item Base images caching (warmer)
+%       \end{itemize}
+%     \end{itemize}
+%     \vspace{3ex}
+%     \begin{itemize}
+%       \item Dockefile?
+%       \begin{itemize}
+%         \item Most common changes last
+%         \item Careful with COPY/ADD
+%         \item Remove what you don't need
+%       \end{itemize}
+%     \end{itemize}
+%   \end{beamercolorbox}%
+%   \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.30\paperheight)
+%     \centering
+%     \includegraphics[width=0.35\paperwidth]{img/Kaniko-Logo.png}
+%   \end{textblock*}
+% \end{lblackrwhiteframe}
 
 \begin{2columnsframe}
   {
@@ -397,68 +402,68 @@
   \frametitle{Pipeline as code}
 \end{2columnsframe}
 
-\section{Under the Hood}
+% \section{Under the Hood}
+%
+% \begin{grayframe}
+%   \frametitle{Custom Resources}
+%   CRDs: Task(Run), Pipeline(Run), PipelineResource \\
+%   \vspace{3ex}
+%   Services in the {\em tekton-pipelines} namespace:
+%   \begin{itemize}
+%     \item Webhook Service: resource validation
+%     \item Controller Service:
+%     \begin{itemize}
+%       \item Handles inputs and outputs
+%       \item Calculates the DAG
+%       \item Provisions pods and containers
+%     \end{itemize}
+%   \end{itemize}
+%   \vspace{3ex}
+%   Custom Resource Provisioning:
+%   \begin{itemize}
+%     \item Via YAML
+%     \item Via Go API
+%     \item Labels!
+%   \end{itemize}
+% \end{grayframe}
 
-\begin{grayframe}
-  \frametitle{Custom Resources}
-  CRDs: Task(Run), Pipeline(Run), PipelineResource \\
-  \vspace{3ex}
-  Services in the {\em tekton-pipelines} namespace:
-  \begin{itemize}
-    \item Webhook Service: resource validation
-    \item Controller Service:
-    \begin{itemize}
-      \item Handles inputs and outputs
-      \item Calculates the DAG
-      \item Provisions pods and containers
-    \end{itemize}
-  \end{itemize}
-  \vspace{3ex}
-  Custom Resource Provisioning:
-  \begin{itemize}
-    \item Via YAML
-    \item Via Go API
-    \item Labels!
-  \end{itemize}
-\end{grayframe}
-
-\begin{2columnsframe}
-  {
-  Steps (of a Task):
-  \begin{itemize}
-    \item Containers in one POD (single node)
-    \item Any container image
-    \item Entrypoint re-written
-    \item Serial execution
-    \item Resource allocation?
-  \end{itemize}
-  \vspace{3ex}
-  TaskRun:
-  \begin{itemize}
-    \item Provisions a POD
-    \item Deployes entrypoint tool
-    \item Input/output containers
-    \item User containers (steps)
-  \end{itemize}
-  }
-  {
-  Volumes:
-  \begin{itemize}
-    \item EmptyDir for workspace/home
-    \item Tools (entrypoint)
-    \item Secrets
-    \item Any user ConfigMap / Volume
-    \item (Optionally) Pipeline Share
-  \end{itemize}
-  \vspace{3ex}
-  PipelineRun:
-  \begin{itemize}
-    \item Several PODs, different nodes
-    \item Shared storage: PVC or GCS
-  \end{itemize}
-  }
-  \frametitle{Pods, Entrypoints \& Volumes}
-\end{2columnsframe}
+% \begin{2columnsframe}
+%   {
+%   Steps (of a Task):
+%   \begin{itemize}
+%     \item Containers in one POD (single node)
+%     \item Any container image
+%     \item Entrypoint re-written
+%     \item Serial execution
+%     \item Resource allocation?
+%   \end{itemize}
+%   \vspace{3ex}
+%   TaskRun:
+%   \begin{itemize}
+%     \item Provisions a POD
+%     \item Deployes entrypoint tool
+%     \item Input/output containers
+%     \item User containers (steps)
+%   \end{itemize}
+%   }
+%   {
+%   Volumes:
+%   \begin{itemize}
+%     \item EmptyDir for workspace/home
+%     \item Tools (entrypoint)
+%     \item Secrets
+%     \item Any user ConfigMap / Volume
+%     \item (Optionally) Pipeline Share
+%   \end{itemize}
+%   \vspace{3ex}
+%   PipelineRun:
+%   \begin{itemize}
+%     \item Several PODs, different nodes
+%     \item Shared storage: PVC or GCS
+%   \end{itemize}
+%   }
+%   \frametitle{Pods, Entrypoints \& Volumes}
+% \end{2columnsframe}
 
 % \begin{lblackrwhiteframe}
 %   \frametitle{IBM Cloud}
@@ -491,10 +496,101 @@
 %   \end{textblock*}
 % \end{lblackrwhiteframe}
 
-\section{Tekton and Knative Serving}
+\section{Tekton Projects}
+
+% \begin{2columnsframe}
+%   % Manual trigger
+%   % Using tasks and pipelines in Kservices
+%   % Native triggers: TBD
+%   % Async pipelines
+%   % GitHub events
+%   % -> push/pull request (CI)
+%   % -> comment (CI / CD)
+%   % -> release (CD)
+%   {
+%   \begin{itemize}
+%     \item Aysnchronous Pipelines
+%     \begin{itemize}
+%       \item GitHub Source
+%       \item Container Source
+%       \item Pipeline Output as a Source
+%     \end{itemize}
+%     \item Tekton Trigger project
+%     \item Cloud Event Pipeline Resource
+%   \end{itemize}
+%   }
+%   {
+%   \begin{textblock*}{0.6\paperwidth}(0.35\paperwidth,0.35\paperheight)
+%     \centering
+%     \includegraphics[width=0.6\paperwidth]{img/async_pipelines.png}
+%   \end{textblock*}
+%   }
+%   \frametitle{Tekton Triggers}
+% \end{2columnsframe}
+
+\begin{2columnsframe}
+  {
+  \begin{itemize}
+    \item Pipeline
+    \item Dashboard
+    \item CLI
+    \item Catalog
+    \item Trigger
+    \item Plumbing
+  \end{itemize}
+  }
+  {
+  \begin{itemize}
+    \item Operator
+    \item Community
+    \item Friends
+    \item Website (https://tekton.dev/)
+  \end{itemize}
+  }
+  \frametitle{All Tekton projects}
+\end{2columnsframe}
+
+% \begin{grayframe}
+%   \frametitle{Tekton and Development}
+%   \begin{itemize}
+%     \item It depends.
+%     \item What can go wrong?
+%     \begin{itemize}
+%       \item Building the container image
+%       \item Provisioning and I/O of shared storage
+%       \item Pipeline Output as a Source
+%     \end{itemize}
+%     \item What do I gain?
+%     \begin{itemize}
+%       \item Same building blocks used in CI/CD
+%       \item Run in containers from the start
+%       \item Parallel execution
+%     \end{itemize}
+%   \end{itemize}
+%   % Maybe
+%   % Local development with minikube
+%   % Skaffold, ko, gulp
+%   % Pros and cons
+% \end{grayframe}
+
+\section {Full Demo: Knative, Tekton and Triggers}
+
+\begin{whiteframe}
+  \frametitle{E2E Demo}
+  % Cloud Native Pipelines, run on Kubernetes
+  \begin{textblock*}{\paperwidth}(0.05\paperwidth,0.05\paperheight)
+    \includegraphics[width=0.75\paperwidth]{img/e2e-demo.png}
+  \end{textblock*}
+  \begin{textblock*}{0.2\paperwidth}(0.9\paperwidth,0.83\paperheight)
+    \includegraphics[width=0.03\paperwidth]{img/cc.png}
+    \includegraphics[width=0.03\paperwidth]{img/zero.png}
+  \end{textblock*}
+\end{grayframe}
+
+\section{Tekton Pipeline for Knative Serving}
 
 \begin{grayframe}
-  \frametitle{Pipelines and Knative Build}
+  \frametitle{Tekton in local development}
   % *Run can be used as build with serving via duck typing
   % Build probably won't be developed much further
   % ...but you never know
@@ -549,118 +645,78 @@
   {
   \lstinputlisting[language=koyaml,firstline=28,lastline=58]{code/frontend.yaml}
   }
-  \frametitle{KService for Health Frontend}
+  \frametitle{KService Example}
 \end{2columnsframe}
 
-\section{Demo Tekton and Knative Serving}
-
-\section{Tekton and Knative Eventing}
-
-\begin{2columnsframe}
-  % Manual trigger
-  % Using tasks and pipelines in Kservices
-  % Native triggers: TBD
-  % Async pipelines
-  % GitHub events
-  % -> push/pull request (CI)
-  % -> comment (CI / CD)
-  % -> release (CD)
-  {
-  \begin{itemize}
-    \item Aysnchronous Pipelines
-    \begin{itemize}
-      \item GitHub Source
-      \item Container Source
-      \item Pipeline Output as a Source
-    \end{itemize}
-    \item Manual trigger for now
-  \end{itemize}
-  }
-  {
-  \begin{textblock*}{0.6\paperwidth}(0.35\paperwidth,0.23\paperheight)
-    \centering
-    \includegraphics[width=0.6\paperwidth]{img/async_pipelines.png}
-  \end{textblock*}
-  }
-  \frametitle{Triggering and Knative Eventing}
-\end{2columnsframe}
-
-% \begin{grayframe}
-%   \frametitle{Tekton and Development}
-%   \begin{itemize}
-%     \item It depends.
-%     \item What can go wrong?
-%     \begin{itemize}
-%       \item Building the container image
-%       \item Provisioning and I/O of shared storage
-%       \item Pipeline Output as a Source
-%     \end{itemize}
-%     \item What do I gain?
-%     \begin{itemize}
-%       \item Same building blocks used in CI/CD
-%       \item Run in containers from the start
-%       \item Parallel execution
-%     \end{itemize}
-%   \end{itemize}
-%   % Maybe
-%   % Local development with minikube
-%   % Skaffold, ko, gulp
-%   % Pros and cons
-% \end{grayframe}
-
-\section {Demo Tekton and Knative Eventing}
-% # On the glue repo
-% ko apply -f config
-% kubectl get pods -l serving.knative.dev/github-tekton-glue
-% # Make a change again
-% git commit --amend
-% git push origin devoxx_demo --force
-% kubectl logs $(kubectl get pods -l serving.knative.dev/configuration=github-tekton-glue --no-headers -o custom-columns=":metadata.name") -c user-container
-% # Run the watch command to see the pipeline running
 
 \section{Conclusions}
 
-\begin{grayframe}
-  \frametitle{Dev, CI and CD}
-  \begin{itemize}
-    \item Development Workflow:
+\begin{2columnsframe}
+  {
+    Development Workflow:
     \begin{itemize}
       \item + Local or in-cluster
       \item + Reproducibility
       \item + Parallel execution
-      \item - Can be slow
+      \item - No support for local source
     \end{itemize}
-    \item CI / CD:
+    CI / CD:
     \begin{itemize}
       \item + Integrates with CI systems
+      \begin{itemize}
+        \item Jenkins X
+        \item Prow
+        \item RedHat OpenShift
+        \item IBM Cloud Pipelines
+        \item Kabanero (https://kabanero.io/)
+        \item ...and more
+      \end{itemize}
+    \end{itemize}
+  }
+  {
+    CI / CD:
+    \begin{itemize}
+      \item + Pipeline readability
       \item + Re-usable blocks
       \item + Best practices
       \item + Small Footprint
+      \item + Tested on iteself (dogfooding - WIP)
       \item - Depends on k8s
-      \item - Security
+      \item - Security and observability are WIP
     \end{itemize}
-  \end{itemize}
-\end{grayframe}
+  }
+  \frametitle{Dev, CI and CD}
+\end{2columnsframe}
 
-\begin{grayframe}
-  \frametitle{Conclusions}
-  \begin{itemize}
-    \item Tekton:
+\begin{2columnsframe}
+  {
     \begin{itemize}
-      \item Not only for knative
-      \item Knative first class citizen
-      \item Very early days
-    \end{itemize}
-    \item Tekton Roadmap:
-    \begin{itemize}
-      \item Conditional Execution
-      \item Build Results and Logs
-      \item Pluggable Tasks
-      \item Triggering
+      \item Workflow features
+      \begin{itemize}
+        \item Conditional Execution
+        \item Notifications
+        \item Build Results and logs
+        \item Pluggable Tasks \& Triggers
+      \end{itemize}
       \item Community Library
+      \begin{itemize}
+        \item Include via URI
+        \item Dashboard / CLI integration
+      \end{itemize}
     \end{itemize}
-  \end{itemize}
-\end{grayframe}
+  }
+  {
+    \begin{itemize}
+      \item Beta APIs
+      \item Extendibility
+      \item Security
+      \item Observability
+      \item Dogfooding
+      \item UI: Dashboard and CLI
+    \end{itemize}
+  }
+  \frametitle{Roadmap}
+\end{2columnsframe}
 
 \begin{grayframe}
   \frametitle{References}
